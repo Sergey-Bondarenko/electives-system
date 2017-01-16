@@ -3,15 +3,27 @@ package com.epamtraining.entities;
 import java.io.Serializable;
 
 /**
- * Entity class for StudentCourse table.
+ * Entity class for Rating table.
  * @author Sergey Bondarenko
  */
 public class Rating implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    /**
+     * Student account
+     */
     private Account student;
+    /**
+     * Course for student
+     */
     private Course course;
+    /**
+     * Student rating for course
+     */
     private String rating;
+    /**
+     * Teacher comment for student
+     */
     private String comment;
 
     public Rating(Account student, Course course, String rating, String comment) {

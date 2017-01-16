@@ -1,8 +1,6 @@
 package com.epamtraining.commands;
 
-import com.epamtraining.dao.DaoFactory;
 import com.epamtraining.entities.Account;
-import com.epamtraining.entities.UserType;
 import com.epamtraining.exception.*;
 import com.epamtraining.notification.Notification;
 import com.epamtraining.notification.NotificationCreator;
@@ -65,10 +63,11 @@ public class RegistrationCommand extends ActionCommand {
                     if (DigestUtils.md5Hex(password).equals(DigestUtils.md5Hex(confirmPassword))) {
                         newAccount.setPassword(DigestUtils.md5Hex(password));
                         newAccount.setUserType(UserTypeService.getStudentUserType());
-                        AccountService.createNewUser(newAccount);
-                        logger.info("Successful registration by login: " + login);
-                        notification = NotificationCreator.createFromProperty("info.reg.success", locale);
-                        return pathManager.getString("path.page.login");
+                        if (AccountService.createNewUser(newAccount)) {
+                            logger.info("Successful registration by login: " + login);
+                            notification = NotificationCreator.createFromProperty("info.reg.success", locale);
+                            return pathManager.getString("path.page.login");
+                        }
                     } else {
                         notification = NotificationCreator.createFromProperty("error.reg.invalid_pass", Notification.Type.ERROR, locale);
                     }

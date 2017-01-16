@@ -1,7 +1,8 @@
 package com.epamtraining.exception;
 
 /**
- * Auth exception
+ * An exception that Service classes throw
+ * @author Sergey Bondarenko
  */
 public class ServiceTechnicalException extends Exception {
 

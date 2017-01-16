@@ -1,6 +1,7 @@
 package com.epamtraining.services;
 
 import com.epamtraining.dao.DaoFactory;
+import com.epamtraining.dao.interfaces.CourseDAO;
 import com.epamtraining.entities.Account;
 import com.epamtraining.entities.Course;
 import com.epamtraining.entities.Rating;
@@ -11,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * Service for getting courses
+ * Service for courses
  * @author Sergey Bondarenko
  */
-public class CoursesService {
+public class CourseService {
 
     /**
      * Fills all courses with rating list
@@ -166,5 +167,83 @@ public class CoursesService {
         } catch (DAOLogicalException e) {
             throw new ServiceLogicalException(e);
         }
+    }
+
+    /**
+     * Set course status
+     * @param courseId course id
+     * @throws ServiceTechnicalException
+     * @throws ServiceLogicalException
+     */
+    public static void setCourseStatus(Integer courseId) throws ServiceTechnicalException, ServiceLogicalException {
+        try {
+            CourseDAO courseDAO = DaoFactory.getDaoFactory().getCourseDao();
+            courseDAO.updateCourseStatus(courseId);
+        } catch (DAOTechnicalException e) {
+            throw new ServiceTechnicalException(e);
+        } catch (DAOLogicalException e) {
+            throw new ServiceLogicalException(e);
+        }
+    }
+
+    /**
+     * Get account by id
+     * @param id account id
+     * @return account object
+     * @throws ServiceTechnicalException
+     * @throws ServiceLogicalException
+     */
+    public static Course getCourseById(Integer id) throws ServiceTechnicalException, ServiceLogicalException {
+        Course course;
+        try {
+            course = DaoFactory.getDaoFactory().getCourseDao().findEntityById(id);
+        } catch (DAOTechnicalException e) {
+            throw new ServiceTechnicalException(e);
+        } catch (DAOLogicalException e) {
+            throw new ServiceLogicalException(e);
+        }
+        return course;
+    }
+
+    /**
+     * Update Course object in database
+     * @param course target course
+     * @return success operation
+     * @throws ServiceTechnicalException
+     * @throws ServiceLogicalException
+     */
+    public static boolean updateCourse(Course course) throws ServiceTechnicalException, ServiceLogicalException {
+        try {
+            CourseDAO dao = DaoFactory.getDaoFactory().getCourseDao();
+            if (dao.update(course)) {
+                return true;
+            }
+        } catch (DAOTechnicalException e) {
+            throw new ServiceTechnicalException(e);
+        } catch (DAOLogicalException e) {
+            throw new ServiceLogicalException(e);
+        }
+        return false;
+    }
+
+    /**
+     * Delete course in database
+     * @param course target course
+     * @return success operation
+     * @throws ServiceTechnicalException
+     * @throws ServiceLogicalException
+     */
+    public static boolean deleteCourse(Integer course) throws ServiceTechnicalException, ServiceLogicalException {
+        try {
+            CourseDAO dao = DaoFactory.getDaoFactory().getCourseDao();
+            if (dao.delete(course)) {
+                return true;
+            }
+        } catch (DAOTechnicalException e) {
+            throw new ServiceTechnicalException(e);
+        } catch (DAOLogicalException e) {
+            throw new ServiceLogicalException(e);
+        }
+        return false;
     }
 }

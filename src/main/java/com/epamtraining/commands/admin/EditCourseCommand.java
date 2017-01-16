@@ -2,19 +2,16 @@ package com.epamtraining.commands.admin;
 
 import com.epamtraining.builder.CourseBuilder;
 import com.epamtraining.commands.AdminCommand;
-import com.epamtraining.dao.DaoFactory;
-import com.epamtraining.dao.interfaces.CourseDAO;
 import com.epamtraining.entities.Course;
 import com.epamtraining.exception.*;
 import com.epamtraining.notification.Notification;
 import com.epamtraining.notification.NotificationCreator;
 import com.epamtraining.notification.NotificationService;
 import com.epamtraining.resource.LocaleManager;
-import com.epamtraining.services.CoursesService;
+import com.epamtraining.services.CourseService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -38,13 +35,12 @@ public class EditCourseCommand extends AdminCommand {
         int id;
 
         try {
-            CoursesService.setInfoForCourse(request);
+            CourseService.setInfoForCourse(request);
         } catch (ServiceLogicalException | ServiceTechnicalException e) {
             throw new CommandException(e);
         }
 
         try {
-            CourseDAO dao = DaoFactory.getDaoFactory().getCourseDao();
             try {
                 id = Integer.parseInt(request.getParameter("cid"));
 
@@ -62,29 +58,28 @@ public class EditCourseCommand extends AdminCommand {
 
                     courseBuilder.build(request.getParameterMap(), course);
 
-                    if (dao.update(course)){
+                    if (CourseService.updateCourse(course)){
                         notification = NotificationCreator.createFromProperty("info.db.update_success", locale);
-                        List<Course> courses = dao.findAll();
-                        request.setAttribute("courses", courses);
+                        CourseService.setAllCourses(request);
                         return pathManager.getString("path.page.admin.manager");
                     }
 
                 } catch (BuildException e) {
                     notification = NotificationCreator.createFromProperty("add.invalid_form_data", Notification.Type.ERROR,  locale);
 
-                } catch (DAOLogicalException e) {
+                } catch (ServiceLogicalException e) {
                     notification = new Notification(e.getMessage(), Notification.Type.ERROR);
                 }
             } else {
 
                 try {
-                    course = dao.findEntityById(id);
-                } catch (DAOLogicalException e) {
+                    course = CourseService.getCourseById(id);
+                } catch (ServiceLogicalException e) {
                     notification = NotificationCreator.createFromProperty("error.db.no_such_record", Notification.Type.ERROR, locale);
                     return pathManager.getString("path.page.admin.manager");
                 }
             }
-        } catch (DAOTechnicalException e) {
+        } catch (ServiceTechnicalException e) {
             throw new CommandException(e);
         } finally {
             if (notification != null){

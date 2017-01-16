@@ -42,7 +42,7 @@ public class AuthenticationService {
     }
 
     /**
-     * check if user is logged in to the system
+     * Check if user is logged in to the system
      * @param request
      * @return
      */
@@ -52,7 +52,7 @@ public class AuthenticationService {
     }
 
     /**
-     * perform logout
+     * Perform logout
      * @param session
      */
     public static void logout(HttpSession session){

@@ -2,6 +2,7 @@ package com.epamtraining.exception;
 
 /**
  * An exception that builder classes throw
+ * @author Sergey Bondarenko
  */
 public class BuildException extends Exception{
     public BuildException() {

@@ -4,7 +4,6 @@ import com.epamtraining.entities.Account;
 import com.epamtraining.entities.Course;
 import com.epamtraining.entities.UserType;
 import com.epamtraining.exception.DAOLogicalException;
-import com.epamtraining.exception.DAOTechnicalException;
 
 import java.util.List;
 

@@ -10,7 +10,7 @@ import com.epamtraining.notification.Notification;
 import com.epamtraining.notification.NotificationCreator;
 import com.epamtraining.notification.NotificationService;
 import com.epamtraining.resource.LocaleManager;
-import com.epamtraining.services.CoursesService;
+import com.epamtraining.services.CourseService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +37,7 @@ public class AddCourseCommand extends AdminCommand {
         Course course = new Course();
 
         try {
-            CoursesService.setInfoForCreateCourse(request);
+            CourseService.setInfoForCreateCourse(request);
         } catch (ServiceLogicalException | ServiceTechnicalException e) {
             throw new CommandException(e);
         }

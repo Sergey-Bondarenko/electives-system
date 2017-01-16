@@ -6,7 +6,6 @@ import com.epamtraining.entities.UserType;
 import com.epamtraining.exception.BuildException;
 import com.epamtraining.exception.DAOLogicalException;
 import com.epamtraining.exception.DAOTechnicalException;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
 
 import java.io.UnsupportedEncodingException;
@@ -102,27 +101,6 @@ public class AccountBuilder extends EntityBuilder<Account> {
         }
         return false;
     }
-
-    //**
-    //* Build account password
-    //* @param args parameter values
-    //* @param builder account builder
-    //*/
-    //rivate boolean buildPassword(String[] args, Account.Builder builder) {
-    //   if (args != null && args.length > 0) {
-    //       String password = args[0];
-    //       if (password.length() > 0) {
-    //           try {
-    //               builder.setPassword(DigestUtils.md5Hex(
-    //                       new String(args[0].getBytes("ISO-8859-1"), "UTF-8")));
-    //           } catch (UnsupportedEncodingException e) {
-    //               logger.error(e);
-    //           }
-    //           return true;
-    //       }
-    //   }
-    //   return false;
-    //
 
     /**
      * Build account user type

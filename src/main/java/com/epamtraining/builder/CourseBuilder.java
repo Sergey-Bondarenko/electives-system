@@ -99,9 +99,7 @@ public class CourseBuilder extends EntityBuilder<Course> {
             Status status = null;
             try {
                 status = DaoFactory.getDaoFactory().getStatusDao().findEntityById(statusId);
-            } catch (DAOLogicalException e) {
-                throw new BuildException(e);
-            } catch (DAOTechnicalException e) {
+            } catch (DAOLogicalException | DAOTechnicalException e) {
                 throw new BuildException(e);
             }
             if (status != null) {
@@ -124,9 +122,7 @@ public class CourseBuilder extends EntityBuilder<Course> {
             Account account = null;
             try {
                 account = DaoFactory.getDaoFactory().getAccountDao().findEntityById(teacherId);
-            } catch (DAOLogicalException e) {
-                throw new BuildException(e);
-            } catch (DAOTechnicalException e) {
+            } catch (DAOLogicalException | DAOTechnicalException e) {
                 throw new BuildException(e);
             }
             if (account != null) {

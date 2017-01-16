@@ -16,7 +16,9 @@ public class DataSource extends DaoFactory {
      * Logger
      */
     private final Logger logger = Logger.getRootLogger();
-
+    /**
+     * Connection pool
+     */
     private JdbcConnectionPool pool = JdbcConnectionPool.getInstance();
 
     public DataSource() throws ConnectionPoolException {

@@ -10,9 +10,14 @@ import java.util.List;
 public class Status implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    /**
+     * Status id
+     */
     private Integer id;
+    /**
+     * Status name
+     */
     private String courseStatus;
-    private List<Course> courseList;
 
     public Status() {
     }
@@ -36,14 +41,6 @@ public class Status implements Serializable {
 
     public void setCourseStatus(String courseStatus) {
         this.courseStatus = courseStatus;
-    }
-
-    public List<Course> getCourseList() {
-        return courseList;
-    }
-
-    public void setCourseList(List<Course> courseList) {
-        this.courseList = courseList;
     }
 
     @Override

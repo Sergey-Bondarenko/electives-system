@@ -24,9 +24,7 @@ public class AccountsCommand extends AdminCommand {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         try {
             AccountService.setAllAccounts(request);
-        } catch (ServiceTechnicalException e) {
-            throw new CommandException(e);
-        } catch (ServiceLogicalException e) {
+        } catch (ServiceTechnicalException | ServiceLogicalException e) {
             throw new CommandException(e);
         }
 

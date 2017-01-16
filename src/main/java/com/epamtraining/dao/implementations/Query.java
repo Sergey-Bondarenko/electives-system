@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * @autor Sergey Bondarenko
+ * Query closing class
+ * @author  Sergey Bondarenko
  */
 public final class Query {
 

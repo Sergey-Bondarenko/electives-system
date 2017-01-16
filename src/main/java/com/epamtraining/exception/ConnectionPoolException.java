@@ -2,6 +2,7 @@ package com.epamtraining.exception;
 
 /**
  * This must be thrown when have problems creating a connection pool
+ * @author Sergey Bondarenko
  */
 public class ConnectionPoolException extends Exception{
 

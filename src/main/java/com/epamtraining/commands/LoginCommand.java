@@ -8,7 +8,7 @@ import com.epamtraining.notification.Notification;
 import com.epamtraining.notification.NotificationCreator;
 import com.epamtraining.notification.NotificationService;
 import com.epamtraining.resource.LocaleManager;
-import com.epamtraining.services.CoursesService;
+import com.epamtraining.services.CourseService;
 import com.epamtraining.services.UserTypeService;
 import org.apache.log4j.Logger;
 
@@ -69,15 +69,15 @@ public class LoginCommand extends ActionCommand{
                 notification = NotificationCreator.createFromProperty("info.auth.success", locale);
 
                 if (account.getUserType().equals(admin)) {
-                    CoursesService.setAllCourses(request);
+                    CourseService.setAllCourses(request);
                     return pathManager.getString("path.page.admin.manager");
 
                 } else if (account.getUserType().equals(teacher)) {
-                    CoursesService.setCoursesForTeacher(request, account);
+                    CourseService.setCoursesForTeacher(request, account);
                     return pathManager.getString("path.page.teacher.account");
 
                 } else if (account.getUserType().equals(student)) {
-                    CoursesService.setCoursesWithRatingsForStudent(request, account);
+                    CourseService.setCoursesWithRatingsForStudent(request, account);
                     return pathManager.getString("path.page.student.account");
                 }
 

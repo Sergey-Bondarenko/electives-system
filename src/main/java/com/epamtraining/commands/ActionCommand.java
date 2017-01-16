@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Abstract class for commands
+ * @author Sergey Bondarenko
  */
 public abstract class ActionCommand {
 
@@ -23,7 +24,7 @@ public abstract class ActionCommand {
      * @param account can be null
      * @return
      */
-    public abstract boolean checkAccess(Account account);
+    public abstract boolean checkAccess(Account account) throws CommandException;
 
     /**
      * This method reads a command from the request

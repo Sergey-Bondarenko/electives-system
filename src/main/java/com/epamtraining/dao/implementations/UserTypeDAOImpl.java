@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.epamtraining.dao.implementations;
 
 import com.epamtraining.dao.interfaces.UserTypeDAO;
@@ -13,7 +8,7 @@ import com.epamtraining.exception.DAOLogicalException;
 import java.util.List;
 
 /**
- *
+ * UserType data object access implementation
  * @author Sergey Bondarenko
  */
 public class UserTypeDAOImpl extends AbstractDAOImpl implements UserTypeDAO {

@@ -10,9 +10,14 @@ import java.util.List;
 public class UserType implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    /**
+     * User type id
+     */
     private Integer id;
+    /**
+     * User type name
+     */
     private String userType;
-    private List<Account> accountList;
 
     public UserType() {
     }
@@ -38,14 +43,6 @@ public class UserType implements Serializable {
     public UserType setUserType(String userType) {
         this.userType = userType;
         return this;
-    }
-
-    public List<Account> getAccountList() {
-        return accountList;
-    }
-
-    public void setAccountList(List<Account> accountList) {
-        this.accountList = accountList;
     }
 
     @Override

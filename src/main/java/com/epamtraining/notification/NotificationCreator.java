@@ -6,13 +6,12 @@ import java.util.Locale;
 
 /**
  * Simplifies notification creation
+ * @author Sergey Bondarenko
  */
 public class NotificationCreator {
 
     /**
      * Create notification by type and property key
-     *
-     *
      * @param propertyName
      * @param type
      * @return
@@ -30,8 +29,7 @@ public class NotificationCreator {
     }
 
     /**
-     * Create notification by type and property key
-     *
+     * Create notification by property key
      * @param propertyName
      * @return
      */

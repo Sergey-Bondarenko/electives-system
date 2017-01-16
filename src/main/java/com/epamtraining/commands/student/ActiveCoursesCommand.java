@@ -2,7 +2,7 @@ package com.epamtraining.commands.student;
 
 import com.epamtraining.commands.StudentCommand;
 import com.epamtraining.exception.*;
-import com.epamtraining.services.CoursesService;
+import com.epamtraining.services.CourseService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +24,7 @@ public class ActiveCoursesCommand extends StudentCommand {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 
         try {
-            CoursesService.setCoursesWithRatings(request);
+            CourseService.setCoursesWithRatings(request);
         } catch (ServiceLogicalException e) {
             throw new CommandException(e);
         } catch (ServiceTechnicalException e) {

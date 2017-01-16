@@ -1,15 +1,11 @@
 package com.epamtraining.commands.admin;
 
 import com.epamtraining.commands.AdminCommand;
-import com.epamtraining.dao.DaoFactory;
-import com.epamtraining.entities.Course;
-import com.epamtraining.exception.CommandException;
-import com.epamtraining.exception.DAOLogicalException;
-import com.epamtraining.exception.DAOTechnicalException;
+import com.epamtraining.exception.*;
+import com.epamtraining.services.CourseService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * Command for managing courses
@@ -28,11 +24,10 @@ public class ManagerCommand extends AdminCommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         try{
-            List<Course> courses = DaoFactory.getDaoFactory().getCourseDao().findAll();
-            request.setAttribute("courses", courses);
-        } catch (DAOLogicalException e) {
+            CourseService.setAllCourses(request);
+        } catch (ServiceLogicalException e) {
             throw new CommandException(e);
-        } catch (DAOTechnicalException e) {
+        } catch (ServiceTechnicalException e) {
             throw new CommandException(e);
         }
         return pathManager.getString("path.page.admin.manager");

@@ -8,8 +8,12 @@ import com.epamtraining.exception.DAOTechnicalException;
 import com.epamtraining.exception.ServiceLogicalException;
 import com.epamtraining.exception.ServiceTechnicalException;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
- * Created by qopy on 16-Jan-17.
+ * User type service for commands
+ * @author Sergey Bondarenko
  */
 public class UserTypeService {
     /**
@@ -70,5 +74,22 @@ public class UserTypeService {
             throw new ServiceTechnicalException(e);
         }
         return admin;
+    }
+
+    /**
+     * Set up user types for accounts
+     * @param request
+     * @throws ServiceLogicalException
+     * @throws ServiceTechnicalException
+     */
+    public static void setupAllUserTypes(HttpServletRequest request) throws ServiceLogicalException, ServiceTechnicalException {
+        try {
+            List<UserType> userTypes = DaoFactory.getDaoFactory().getUserTypeDao().findAll();
+            request.setAttribute("usertypes", userTypes);
+        } catch (DAOTechnicalException e) {
+            throw new ServiceLogicalException(e);
+        } catch (DAOLogicalException e) {
+            throw new ServiceTechnicalException(e);
+        }
     }
 }

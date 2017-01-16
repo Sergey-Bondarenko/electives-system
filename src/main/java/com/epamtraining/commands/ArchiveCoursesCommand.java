@@ -2,7 +2,7 @@ package com.epamtraining.commands;
 
 import com.epamtraining.entities.Account;
 import com.epamtraining.exception.*;
-import com.epamtraining.services.CoursesService;
+import com.epamtraining.services.CourseService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +29,7 @@ public class ArchiveCoursesCommand extends ActionCommand {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 
         try {
-            CoursesService.setArchivedCourses(request);
+            CourseService.setArchivedCourses(request);
         } catch (ServiceLogicalException | ServiceTechnicalException e) {
             throw new CommandException(e);
         }

@@ -8,8 +8,7 @@ import java.util.Iterator;
 
 /**
  * Renders out notifications stored in session
- * Example of usage:
- *
+ * @author Sergey Bondarenko
  */
 public class FlashesTag extends BodyTagSupport {
     private static final String MESSAGE = "{message}";
@@ -62,7 +61,7 @@ public class FlashesTag extends BodyTagSupport {
     /**
      * Create a getMessage from pattern
      * @param notification
-     * @return
+     * @return massage
      */
     private String formatMessage(Notification notification){
 

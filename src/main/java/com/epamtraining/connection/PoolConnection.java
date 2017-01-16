@@ -58,6 +58,10 @@ public class PoolConnection implements Connection {
         connection.rollback();
     }
 
+    /**
+     * Wrapped connection close for connection pooling
+     * @throws SQLException
+     */
     @Override
     public void close() throws SQLException {
         dataSource.closeConnection(connection);

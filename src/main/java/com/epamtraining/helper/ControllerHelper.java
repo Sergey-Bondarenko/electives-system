@@ -37,7 +37,6 @@ public enum ControllerHelper {
             commands.put("registration", new RegistrationCommand());
             commands.put("all_courses", new ViewCoursesCommand());
             commands.put("archive", new ArchiveCoursesCommand());
-            //commands.put("registration", new RegistrationCommand());
             //Admin commands
             commands.put("manager", new ManagerCommand());
             commands.put("add_course", new AddCourseCommand());

@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 /**
  * Message manager
+ * @author Sergey Bondarenko
  */
 public enum MessageManager {
     INSTANCE;

@@ -2,24 +2,18 @@ package com.epamtraining.commands.admin;
 
 import com.epamtraining.builder.AccountBuilder;
 import com.epamtraining.commands.AdminCommand;
-import com.epamtraining.dao.DaoFactory;
-import com.epamtraining.dao.interfaces.AccountDAO;
 import com.epamtraining.entities.Account;
-import com.epamtraining.entities.Rating;
-import com.epamtraining.entities.UserType;
-import com.epamtraining.exception.BuildException;
-import com.epamtraining.exception.CommandException;
-import com.epamtraining.exception.DAOLogicalException;
-import com.epamtraining.exception.DAOTechnicalException;
+import com.epamtraining.exception.*;
 import com.epamtraining.notification.Notification;
 import com.epamtraining.notification.NotificationCreator;
 import com.epamtraining.notification.NotificationService;
 import com.epamtraining.resource.LocaleManager;
+import com.epamtraining.services.AccountService;
+import com.epamtraining.services.UserTypeService;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -40,21 +34,15 @@ public class EditAccountCommand extends AdminCommand {
         Notification notification = null;
         Locale locale = LocaleManager.INSTANCE.resolveLocale(request);
         Account account = new Account();
-        List<UserType> userTypes;
         int id;
 
         try {
-            userTypes = DaoFactory.getDaoFactory().getUserTypeDao().findAll();
-            request.setAttribute("usertypes", userTypes);
-        } catch (DAOTechnicalException e) {
-            throw new CommandException(e);
-        } catch (DAOLogicalException e) {
+            UserTypeService.setupAllUserTypes(request);
+        } catch (ServiceLogicalException | ServiceTechnicalException e) {
             throw new CommandException(e);
         }
 
         try {
-            AccountDAO dao = DaoFactory.getDaoFactory().getAccountDao();
-
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException e) {
@@ -72,29 +60,28 @@ public class EditAccountCommand extends AdminCommand {
 
                     if (!request.getParameter("password").equals("")) {
                         account.setPassword(DigestUtils.md5Hex(request.getParameter("password")));
-                        dao.update(account);
+                        AccountService.updateUser(account);
                     } else {
-                        dao.updateWithoutPassword(account);
+                        AccountService.updateUserWithoutPassword(account);
                     }
                     notification = NotificationCreator.createFromProperty("info.db.update_success", locale);
-                    List<Account> accounts = dao.findAll();
-                    request.setAttribute("accounts", accounts);
+                    AccountService.setAllAccounts(request);
                     return pathManager.getString("path.page.admin.accounts");
                 } catch (BuildException e) {
                     notification = NotificationCreator.createFromProperty("add.invalid_form_data", Notification.Type.ERROR,  locale);
-                } catch (DAOLogicalException e) {
+                } catch (ServiceLogicalException e) {
                     notification = new Notification(e.getMessage(), Notification.Type.ERROR);
                 }
 
             } else {
                 try {
-                    account = dao.findEntityById(id);
-                } catch (DAOLogicalException e) {
+                    AccountService.getAccountById(id);
+                } catch (ServiceLogicalException e) {
                     notification = NotificationCreator.createFromProperty("error.db.no_such_record", Notification.Type.ERROR, locale);
                     return pathManager.getString("path.page.admin.accounts");
                 }
             }
-        } catch (DAOTechnicalException e) {
+        } catch (ServiceTechnicalException e) {
             throw new CommandException(e);
         } finally {
             if (notification != null){

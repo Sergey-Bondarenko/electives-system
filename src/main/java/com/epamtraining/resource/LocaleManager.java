@@ -8,6 +8,7 @@ import java.util.Map;
 
 /**
  * Manages locales
+ * @author Sergey Bondarenko
  */
 public enum LocaleManager {
     INSTANCE;

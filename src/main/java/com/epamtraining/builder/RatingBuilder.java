@@ -1,6 +1,5 @@
 package com.epamtraining.builder;
 
-import com.epamtraining.entities.Account;
 import com.epamtraining.entities.Rating;
 import com.epamtraining.exception.BuildException;
 

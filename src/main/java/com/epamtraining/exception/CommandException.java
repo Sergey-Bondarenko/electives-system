@@ -1,8 +1,8 @@
 package com.epamtraining.exception;
 
-
 /**
- * Command exception
+ * An exception that Command classes throw
+ * @author Sergey Bondarenko
  */
 public class CommandException extends Exception{
     public CommandException() {

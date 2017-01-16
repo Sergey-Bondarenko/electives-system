@@ -8,6 +8,7 @@ import com.epamtraining.exception.DAOLogicalException;
 import java.util.List;
 
 /**
+ * Status data object access implementation
  * @author Sergey Bondarenko
  */
 public class StatusDAOImpl extends AbstractDAOImpl implements StatusDAO {

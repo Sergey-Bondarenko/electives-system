@@ -2,6 +2,7 @@ package com.epamtraining.filter;
 
 import com.epamtraining.commands.ActionCommand;
 import com.epamtraining.entities.Account;
+import com.epamtraining.exception.CommandException;
 import com.epamtraining.helper.ControllerHelper;
 import com.epamtraining.services.AuthenticationService;
 import com.epamtraining.resource.PathManager;
@@ -45,12 +46,16 @@ public class CommandAccessFilter implements Filter {
 
         Account account = AuthenticationService.account(request);
 
-        if (command.checkAccess(account)){
-            chain.doFilter(req, resp);
-        } else{
-            response.setStatus(403);
-            logger.error(String.format("Access denied for %s to the following command: %s", (account != null) ? account : "anonymous user", command));
-            request.getRequestDispatcher(pathManager.getString("path.error403")).forward(req, resp);
+        try {
+            if (command.checkAccess(account)){
+                chain.doFilter(req, resp);
+            } else{
+                response.setStatus(403);
+                logger.error(String.format("Access denied for %s to the following command: %s", (account != null) ? account : "anonymous user", command));
+                request.getRequestDispatcher(pathManager.getString("path.error403")).forward(req, resp);
+            }
+        } catch (CommandException e) {
+            e.printStackTrace();
         }
     }
 

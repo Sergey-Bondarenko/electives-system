@@ -1,7 +1,6 @@
 package com.epamtraining.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Entity class for Account table.
@@ -10,13 +9,29 @@ import java.util.List;
 public class Account implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    /**
+     * Account id
+     */
     private Integer id;
+    /**
+     * Account name
+     */
     private String name;
+    /**
+     * Account surname
+     */
     private String surname;
+    /**
+     * Account login in system
+     */
     private String login;
+    /**
+     * Account password
+     */
     private String password;
-    private Rating rating;
-    private List<Course> courseList;
+    /**
+     * Account user type
+     */
     private UserType userType;
 
     public Account() {
@@ -76,22 +91,6 @@ public class Account implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Rating getRating() {
-        return rating;
-    }
-
-    public void setRating(Rating rating) {
-        this.rating = rating;
-    }
-
-    public List<Course> getCourseList() {
-        return courseList;
-    }
-
-    public void setCourseList(List<Course> courseList) {
-        this.courseList = courseList;
     }
 
     public UserType getUserType() {

@@ -17,8 +17,6 @@ public abstract class DaoFactory {
         }
     }
 
-    public abstract Connection getConnection();
-
     public abstract StatusDAO getStatusDao();
 
     public abstract UserTypeDAO getUserTypeDao();

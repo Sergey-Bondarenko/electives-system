@@ -2,7 +2,6 @@ package com.epamtraining.dao.interfaces;
 
 import com.epamtraining.entities.Rating;
 import com.epamtraining.entities.Account;
-import com.epamtraining.entities.Course;
 import com.epamtraining.exception.DAOLogicalException;
 
 import java.util.List;

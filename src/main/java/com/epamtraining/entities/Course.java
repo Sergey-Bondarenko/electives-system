@@ -10,13 +10,37 @@ import java.util.List;
 public class Course implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    /**
+     * Course id
+     */
     private Integer id;
+    /**
+     * Course name
+     */
     private String name;
+    /**
+     * Course description
+     */
     private String description;
+    /**
+     * Course ratings list
+     */
     private List<Rating> ratingList;
+    /**
+     * Course status
+     */
     private Status status;
+    /**
+     * Course teacher
+     */
     private Account teacher;
+    /**
+     * Course count listeners
+     */
     private Integer listeners;
+    /**
+     * Course max count listeners
+     */
     private Integer maxListeners;
 
     public Course() {
@@ -67,10 +91,6 @@ public class Course implements Serializable {
 
     public void setRatingList(List<Rating> ratingList) {
         this.ratingList = ratingList;
-    }
-
-    public void addCourseStudent(Account account) {
-        //ratingList.add(account);
     }
 
     public Status getStatus() {

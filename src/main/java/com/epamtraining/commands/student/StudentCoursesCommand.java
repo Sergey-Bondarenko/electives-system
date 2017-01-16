@@ -4,7 +4,7 @@ import com.epamtraining.commands.StudentCommand;
 import com.epamtraining.entities.Account;
 import com.epamtraining.exception.*;
 import com.epamtraining.services.AuthenticationService;
-import com.epamtraining.services.CoursesService;
+import com.epamtraining.services.CourseService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +27,7 @@ public class StudentCoursesCommand extends StudentCommand {
         Account account = AuthenticationService.account(request);
 
         try {
-            CoursesService.setCoursesWithRatingsForStudent(request, account);
+            CourseService.setCoursesWithRatingsForStudent(request, account);
         } catch (ServiceLogicalException | ServiceTechnicalException e) {
             throw new CommandException(e);
         }

@@ -19,7 +19,7 @@
 <%@ include file="../WEB-INF/jspf/header.jspf"%>
 
 <main class="container" id="courses">
-    <c:forEach var="course" items="${activecourses}">
+    <c:forEach var="course" items="${courses}">
         <div class="courses-view">
             <h3>${course.name}</h3>
             <c:set var="status" value="${course.status.courseStatus}"/>

@@ -9,7 +9,8 @@ import com.epamtraining.notification.Notification;
 import com.epamtraining.notification.NotificationCreator;
 import com.epamtraining.notification.NotificationService;
 import com.epamtraining.resource.LocaleManager;
-import com.epamtraining.services.CoursesService;
+import com.epamtraining.services.CourseService;
+import com.epamtraining.services.RatingService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,16 +39,15 @@ public class RemoveStudentCommand extends AdminCommand {
             try {
                 int sid = Integer.parseInt(studentParam);
                 int cid = Integer.parseInt(courseParam);
-                RatingDAO dao = DaoFactory.getDaoFactory().getRatingDao();
-                if (dao.deleteForStudent(cid, sid)) {
-                    CoursesService.setInfoForCourse(request);
-                    course = DaoFactory.getDaoFactory().getCourseDao().findEntityById(cid);
+                if (RatingService.removeStudentFromCourse(cid, sid)) {
+                    CourseService.setInfoForCourse(request);
+                    course = CourseService.getCourseById(cid);
 
                     notification = NotificationCreator.createFromProperty("info.db.delete_success", locale);
                 }
-            } catch (ServiceTechnicalException | DAOTechnicalException | ServiceLogicalException e) {
+            } catch (ServiceTechnicalException e) {
                 throw new CommandException(e);
-            } catch (DAOLogicalException e) {
+            } catch (ServiceLogicalException e) {
                 notification = NotificationCreator.createFromProperty("error.db.no_such_record", Notification.Type.ERROR, locale);
             } finally {
                 if (notification != null) {

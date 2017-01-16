@@ -9,6 +9,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.util.Locale;
 
+/**
+ * Application listener fo work with servlet, session and request
+ * @author Sergey Bondarenko
+ */
 public class ApplicationListener implements ServletContextListener,
         HttpSessionListener, HttpSessionAttributeListener, ServletRequestListener {
 

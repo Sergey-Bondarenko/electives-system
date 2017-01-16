@@ -1,7 +1,8 @@
 package com.epamtraining.exception;
 
 /**
- *
+ * An exception that data access classes throw
+ * @author Sergey Bondarenko
  */
 public class DAOTechnicalException extends Exception{
 

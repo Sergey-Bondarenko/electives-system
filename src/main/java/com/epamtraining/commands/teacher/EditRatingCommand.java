@@ -2,8 +2,6 @@ package com.epamtraining.commands.teacher;
 
 import com.epamtraining.builder.RatingBuilder;
 import com.epamtraining.commands.TeacherCommand;
-import com.epamtraining.dao.DaoFactory;
-import com.epamtraining.dao.interfaces.RatingDAO;
 import com.epamtraining.entities.Account;
 import com.epamtraining.entities.Rating;
 import com.epamtraining.exception.*;
@@ -11,8 +9,10 @@ import com.epamtraining.notification.Notification;
 import com.epamtraining.notification.NotificationCreator;
 import com.epamtraining.notification.NotificationService;
 import com.epamtraining.resource.LocaleManager;
+import com.epamtraining.services.AccountService;
 import com.epamtraining.services.AuthenticationService;
-import com.epamtraining.services.CoursesService;
+import com.epamtraining.services.CourseService;
+import com.epamtraining.services.RatingService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,13 +39,12 @@ public class EditRatingCommand extends TeacherCommand {
         int cid, sid;
 
         try {
-            CoursesService.setInfoForCourse(request);
+            CourseService.setInfoForCourse(request);
         } catch (ServiceLogicalException | ServiceTechnicalException e) {
             throw new CommandException(e);
         }
 
         try {
-            RatingDAO dao = DaoFactory.getDaoFactory().getRatingDao();
             try {
                 cid = Integer.parseInt(request.getParameter("cid"));
                 sid = Integer.parseInt(request.getParameter("sid"));
@@ -57,38 +56,38 @@ public class EditRatingCommand extends TeacherCommand {
 
             if (request.getParameter("submit") != null){
                 rating = new Rating();
-                rating.setStudent(DaoFactory.getDaoFactory().getAccountDao().findEntityById(sid));
-                rating.setCourse(DaoFactory.getDaoFactory().getCourseDao().findEntityById(cid));
+                rating.setStudent(AccountService.getAccountById(sid));
+                rating.setCourse(CourseService.getCourseById(cid));
 
                 RatingBuilder ratingBuilder = new RatingBuilder();
                 try {
 
                     ratingBuilder.build(request.getParameterMap(), rating);
 
-                    if (dao.updateRating(rating)){
+                    if (RatingService.updateStudentRating(rating)){
                         notification = NotificationCreator.createFromProperty("info.db.update_success", locale);
-                        CoursesService.setCoursesForTeacher(request, account);
+                        CourseService.setCoursesForTeacher(request, account);
                         return pathManager.getString("path.page.teacher.account");
                     }
 
                 } catch (BuildException e) {
                     notification = NotificationCreator.createFromProperty("add.invalid_form_data", Notification.Type.ERROR,  locale);
 
-                } catch (DAOLogicalException e) {
+                } catch (ServiceLogicalException e) {
                     notification = new Notification(e.getMessage(), Notification.Type.ERROR);
-                } catch (ServiceLogicalException | ServiceTechnicalException e) {
+                } catch (ServiceTechnicalException e) {
                     throw new CommandException(e);
                 }
             } else {
 
                 try {
-                    rating = dao.findRatingByStudentCourse(sid, cid);
-                } catch (DAOLogicalException e) {
+                    rating = RatingService.getStudentRating(sid, cid);
+                } catch (ServiceLogicalException e) {
                     notification = NotificationCreator.createFromProperty("error.db.no_such_record", Notification.Type.ERROR, locale);
                     return pathManager.getString("path.page.teacher.account");
                 }
             }
-        } catch (DAOTechnicalException | DAOLogicalException e) {
+        } catch (ServiceTechnicalException | ServiceLogicalException e) {
             throw new CommandException(e);
         } finally {
             if (notification != null){

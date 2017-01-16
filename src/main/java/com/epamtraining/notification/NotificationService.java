@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Notification1 services
  * This class manages notifications in session
+ * @author Sergey Bondarenko
  */
 public class NotificationService {
 
@@ -35,11 +36,11 @@ public class NotificationService {
     public static List<Notification> getNotifications(HttpSession session){
 
         Object ob = session.getAttribute(SERVICE_VAR);
-        List<Notification> list = null;
+        List<Notification> list;
         if(ob != null){
             list = (List) ob;
         } else{
-            list = new LinkedList<Notification>();
+            list = new LinkedList<>();
             session.setAttribute(SERVICE_VAR, list);
         }
 

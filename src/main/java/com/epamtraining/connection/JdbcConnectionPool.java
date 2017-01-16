@@ -89,13 +89,7 @@ public class JdbcConnectionPool {
      * @return connection to use
      */
     public synchronized Connection getConnectionFromPool() {
-        Connection connection = connections.poll();
-        if(connection != null) {
-            logger.info("Connection " + connection + " took from connection pool");
-        } else {
-            logger.error("Couldn't retrieve a connection from pool");
-        }
-        return connection;
+        return connections.poll();
     }
     /**
      * Return connection

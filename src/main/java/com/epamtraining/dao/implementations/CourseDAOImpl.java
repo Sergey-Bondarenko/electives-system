@@ -11,7 +11,7 @@ import com.epamtraining.exception.DAOLogicalException;
 import java.util.List;
 
 /**
- * Course data access object
+ * Course data access object implementation
  * @author Sergey Bondarenko
  */
 public class CourseDAOImpl extends AbstractDAOImpl implements CourseDAO {
