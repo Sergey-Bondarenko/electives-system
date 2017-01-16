@@ -1,0 +1,394 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    font: 14px/1.6 helvetica, sans-serif;
+}
+ul, ol {
+    margin-bottom: 0;
+}
+p {
+    padding-bottom: 15px;
+    line-height: 1.6;
+}
+
+a {
+    color: black;
+}
+
+main {
+    flex: 1;
+}
+
+.header-top {
+    padding: 15px 0;
+    background: #eeeeee;
+    margin-bottom: 25px;
+    text-align: right;
+}
+
+.header-top p {
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+}
+
+.heading{
+    margin-bottom: 30px;
+}
+
+footer {
+    padding: 15px;
+    background-color: rgb(236, 242, 245);
+    color: rgb(121, 171, 211);
+    margin-top: 50px;
+    text-align: right;
+}
+
+#loginForm {
+    padding: 15px;
+    background: #eee;
+}
+
+.alert {
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 25px;
+}
+
+.alert-error {
+    border-color: rgb(211, 143, 143);
+    background-color: rgb(255, 228, 228);
+    color: rgb(180, 0, 0);
+}
+
+.alert-info {
+    border-color: rgb(115, 199, 121);
+    background-color: rgb(212, 245, 214);
+    color: rgb(31, 146, 59);
+}
+
+.lang_switcher {
+    float: left;
+    line-height: 100%
+}
+
+.lang_switcher li {
+    display: inline-block;
+}
+
+.lang_switcher .lang {
+    padding-left: 20px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-right: 10px;
+
+}
+
+.lang-ru {
+    background: url('../images/ru-RU.png');
+}
+
+.lang-en {
+    background: url('../images/en-GB.png');
+}
+
+table {
+    font-size: 85%;
+    border-top: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    border-spacing: 0;
+}
+
+th {
+    font-weight: bold;
+    vertical-align: top;
+    text-align: center;
+}
+
+td, th {
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    padding: 10px;
+}
+
+tr:nth-child(2n) {
+    background-color: #eee;
+}
+
+td {
+    color: #333;
+}
+
+.actions {
+    margin-bottom: 25px;
+}
+
+.ml135px {
+    margin-left: 135px;
+}
+.course {
+    margin-bottom: 25px;
+}
+
+.course-open {
+    color: red;
+    font-size: 70%;
+}
+
+.course-student {
+    padding: 0 10px !important;
+    display: flex !important;
+    justify-content:space-between;
+}
+.course-student span + span {
+    padding-left: 10px;
+}
+.course p {
+    color: #333;
+    font-size: 90%;
+    padding: 5px 0 0 0;
+}
+
+.course .inner {
+    border-left: 3px solid #ccc;
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+
+
+.account .teacher {
+    color: gray;
+    font-size: 70%;
+
+}
+
+.account p {
+    color: #333;
+    font-size: 90%;
+    padding: 5px 0 0 0;
+}
+
+.account .inner {
+    border-left: 3px solid #ccc;
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+
+.account {
+
+    margin-bottom: 25px;
+}
+
+.project-name span {
+    color: rgb(49, 128, 180);
+}
+
+.project-name {
+    color: rgb(224, 159, 43);
+    font-weight: normal;
+    padding-left: 75px;
+    background: url('../images/logo.png') no-repeat;
+    line-height: 65px;
+    vertical-align: middle;
+    background-size: 60px;
+
+}
+
+.header-bottom {
+    position: relative;
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 25px;
+}
+
+.menu {
+    position: absolute;
+    right: 0;
+    top: 25px;
+}
+
+.form-row {
+    padding-bottom: 15px;
+}
+
+.form-row label {
+    width: 120px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 15px;
+    font-weight: bold;
+    text-align: right;
+    line-height: 1;
+}
+
+.form-row input[type=text],
+.form-row input[type=number],
+.form-row input[type=password],
+.form-row input[type=email],
+.form-row textarea,
+.form-row select {
+    width: 500px;
+    font-size: 110%;
+    padding: 5px;
+    margin: 0;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    box-shadow: 0 0 5px #ccc;
+}
+
+#courses {
+    font-size: 0;
+}
+
+.courses-view {
+    width: 28.666666%;
+    vertical-align: top;
+    padding: 2%;
+    display: inline-block;
+    background: rgb(234, 243, 245);
+    font-size: 15px;
+    margin-right: 1%;
+    margin-bottom: 15px;
+}
+
+.courses-view:nth-child(3n) {
+    margin: 0;
+}
+
+.courses-view h3 {
+    margin: 0 0 5px 0;
+    font-weight: normal;
+    color: rgb(0, 90, 141);
+    font-size: 137%;
+}
+
+.courses-view .price {
+    float: right;
+}
+
+.courses-view .hot {
+    font-size: 70% !important;
+    color: red;
+    font-weight: bold;
+    vertical-align: top;
+    margin-left: 5px;
+}
+
+.courses-view p.details {
+    line-height: 1.4;
+    font-size: 90%;
+    color: #555;
+    height: 300px;
+}
+
+.courses-view .type {
+    padding: 7px 0 7px 45px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    line-height: 1;
+    vertical-align: top;
+    margin-bottom: 10px;
+    font-size: 103%;
+}
+
+.courses-view .not-logged {
+    display: inline-block;
+    width: 80%;
+    color: #999;
+    font-size: 100%;
+    text-decoration: underline;
+    line-height: 1;
+}
+
+.discounted {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.tour-order {
+    margin-bottom: 15px;
+}
+
+.tour-order .total {
+    font-weight: bold;
+    font-size: 120%;
+    color: rgb(179, 143, 0);
+}
+
+.tour-order h2 {
+    margin: 0 0 10px 0;
+}
+
+.order-table {
+    font-size: 100%;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.blocks {
+    font-size: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.block {
+    width: 32%;
+    font-size: 15px;
+    vertical-align: top;
+    padding: 2%;
+    background: #F0F0F0;
+    text-align: center;
+}
+
+.block h2 {
+    margin: 0;
+    color: rgb(91, 118, 139);
+}
+
+.block img {
+    width: 128px;
+    padding: 15px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}

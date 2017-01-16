@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>auth</short-name>
+    <uri>http://electives.ua/taglib/auth</uri>
+
+    <function>
+        <name>account</name>
+        <function-class>com.epamtraining.services.AuthenticationService</function-class>
+        <function-signature>com.epamtraining.entities.Account account(javax.servlet.http.HttpServletRequest)</function-signature>
+    </function>
+
+</taglib>

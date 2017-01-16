@@ -1,0 +1,61 @@
+<header>
+    <div class="header-top">
+        <div class="container">
+            <ul class="lang_switcher" >
+                <c:forEach items="${locales}" var="locale">
+                    <li  class="lang lang-${locale.value}"><a href="app?${query}&lang=${locale.value}">${locale.key}</a></li>
+                </c:forEach>
+            </ul>
+
+            <c:choose>
+
+                <c:when test="${not empty user}">
+                    <c:set var="user_type" value="${user.userType.userType}"/>
+                    <p><fmt:message key="user.welcome"><fmt:param value="${user.name}"/> </fmt:message> [<a href="app?c=logout&lang=${locale}"><fmt:message key="user.logout"/></a>]</p>
+                </c:when>
+
+                <c:otherwise>
+                    <p><fmt:message key="guest.welcome"/> [<a href="app?c=login&lang=${locale}"><fmt:message key="user.login"/></a>]</p>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
+
+    <div class="header-bottom container">
+        <h1 class="project-name"><fmt:message key="project_name"/></h1>
+
+        <ul class="menu nav nav-pills">
+            <li><a href="app?lang=${locale}"><fmt:message key="menu.page.main"/></a></li>
+            <c:if test="${user_type eq null}">
+                <li><a href="app?c=registration&lang=${locale}"><fmt:message key="menu.page.registration"/></a></li>
+                <li><a href="app?c=all_courses&lang=${locale}"><fmt:message key="menu.page.courses"/></a></li>
+            </c:if>
+            <c:if test="${user_type eq 'admin'}">
+                <li><a href="app?c=manager&lang=${locale}"><fmt:message key="menu.page.manager"/></a></li>
+                <li><a href="app?c=accounts&lang=${locale}"><fmt:message key="menu.page.accounts"/></a> </li>
+                <li><a href="app?c=all_courses&lang=${locale}"><fmt:message key="menu.page.courses"/></a></li>
+            </c:if>
+            <c:if test="${user_type eq 'teacher'}">
+                <li><a href="app?c=teacher&lang=${locale}"><fmt:message key="menu.page.teacherpage"/></a></li>
+                <li><a href="app?c=all_courses&lang=${locale}"><fmt:message key="menu.page.courses"/></a></li>
+            </c:if>
+            <c:if test="${user_type eq 'student'}">
+                <li><a href="app?c=student&lang=${locale}"><fmt:message key="menu.page.mycourses"/></a></li>
+                <li><a href="app?c=courses&lang=${locale}"><fmt:message key="menu.page.courses"/></a></li>
+            </c:if>
+            <li><a href="app?c=archive&lang=${locale}"><fmt:message key="menu.page.archive"/></a></li>
+        </ul>
+    </div>
+</header>
+<script>
+    var menuItems = $('.menu li');
+    console.log(menuItems);
+</script>
+<c:if test="${n:have_notifications(pageContext.session)}">
+    <div class="content">
+    <n:notifications>
+        <p class="alert alert-{type}">{message}</p>
+    </n:notifications>
+    </div>
+</c:if>
+

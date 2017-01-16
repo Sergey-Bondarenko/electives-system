@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>n</short-name>
+    <uri>http://electives.ua/taglib/notification</uri>
+    <tag>
+        <name>notifications</name>
+        <tag-class>com.epamtraining.notification.FlashesTag</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+
+    <function>
+        <name>have_notifications</name>
+        <function-class>com.epamtraining.notification.NotificationService</function-class>
+        <function-signature>boolean haveNotifications(javax.servlet.http.HttpSession)</function-signature>
+    </function>
+
+
+</taglib>

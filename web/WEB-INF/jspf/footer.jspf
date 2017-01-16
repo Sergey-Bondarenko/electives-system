@@ -1,0 +1,5 @@
+<footer>
+    <div class="container">
+        &copy; <fmt:message key="footer.info"/>. 2017
+    </div>
+</footer>

@@ -1,0 +1,40 @@
+<form method="post">
+    <div class="form-row">
+        <label for="name"><fmt:message key="account_form.name"/></label>
+        <input id="name" name="name" type="text" value="${account.name}">
+    </div>
+
+    <div class="form-row">
+        <label for="surname"><fmt:message key="account_form.surname"/></label>
+        <input id="surname" name="surname" type="text" value="${account.surname}">
+    </div>
+
+    <div class="form-row">
+        <label for="login"><fmt:message key="account_form.login"/></label>
+        <input id="login" name="login" type="text" value="${account.login}">
+    </div>
+
+    <div class="form-row">
+        <label for="password"><fmt:message key="account_form.password"/></label>
+        <input id="password" name="password" type="password">
+        <c:if test="${not empty account.id}">
+        <label class="tooltip"><fmt:message key="account_form.tooltip"/>
+            <span class="tooltiptext"><fmt:message key="account_form.tooltip_text"/></span>
+        </label>
+        </c:if>
+    </div>
+
+
+    <div class="form-row">
+        <label for="userType"><fmt:message key="account_form.type"/></label>
+        <select id="userType" name="userType">
+            <c:forEach var="userType" items="${usertypes}">
+                <option value="${userType.id}" <c:if test="${userType.id eq account.userType.id}"> selected</c:if>>${userType.userType}</option>
+            </c:forEach>
+        </select>
+    </div>
+
+    <input class="btn btn-default" name="submit" type="submit" value="<fmt:message key="form_submit"/>"/>
+    <a href="app?c=accounts&lang=${locale}"><fmt:message key="course_form.back"/></a>
+
+</form>
