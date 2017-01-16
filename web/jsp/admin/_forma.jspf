@@ -1,33 +1,43 @@
-<form method="post">
-    <div class="form-row">
+<c:if test="${not empty account.id}">
+    <script>
+        $(document).ready(function(){
+            $('#password').on('focus', function() {
+                $(this).parent().tooltip('show');
+            })
+
+            $('#password').on('blur', function() {
+                $(this).parent().tooltip('hide');
+            })
+        });
+    </script>
+</c:if>
+
+<form method="post" class="row">
+    <div class="form-group">
         <label for="name"><fmt:message key="account_form.name"/></label>
-        <input id="name" name="name" type="text" value="${account.name}">
+        <input class="form-control" id="name" name="name" type="text" value="${account.name}">
     </div>
 
-    <div class="form-row">
+    <div class="form-group">
         <label for="surname"><fmt:message key="account_form.surname"/></label>
-        <input id="surname" name="surname" type="text" value="${account.surname}">
+        <input class="form-control" id="surname" name="surname" type="text" value="${account.surname}">
     </div>
 
-    <div class="form-row">
+    <div class="form-group">
         <label for="login"><fmt:message key="account_form.login"/></label>
-        <input id="login" name="login" type="text" value="${account.login}">
+        <input class="form-control" id="login" name="login" type="text" value="${account.login}">
     </div>
 
-    <div class="form-row">
+    <div class="form-group">
         <label for="password"><fmt:message key="account_form.password"/></label>
-        <input id="password" name="password" type="password">
-        <c:if test="${not empty account.id}">
-        <label class="tooltip"><fmt:message key="account_form.tooltip"/>
-            <span class="tooltiptext"><fmt:message key="account_form.tooltip_text"/></span>
-        </label>
-        </c:if>
+        <div data-toggle="tooltip" data-placement="right" title="<fmt:message key="account_form.tooltip_text"/>">
+            <input class="form-control" id="password" name="password" type="password">
+        </div>
     </div>
 
-
-    <div class="form-row">
+    <div class="form-group">
         <label for="userType"><fmt:message key="account_form.type"/></label>
-        <select id="userType" name="userType">
+        <select class="form-control" id="userType" name="userType">
             <c:forEach var="userType" items="${usertypes}">
                 <option value="${userType.id}" <c:if test="${userType.id eq account.userType.id}"> selected</c:if>>${userType.userType}</option>
             </c:forEach>

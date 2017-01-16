@@ -19,6 +19,7 @@
 <%@ include file="../WEB-INF/jspf/header.jspf"%>
 
 <main class="container" id="courses">
+    <div class="blocks centred">
     <c:forEach var="course" items="${courses}">
         <div class="courses-view">
             <h3>${course.name}</h3>
@@ -29,6 +30,7 @@
             <p class="teacher"><fmt:message key="course_table.listeners"/> ${course.listeners} / ${course.maxListeners}</p>
         </div>
     </c:forEach>
+    </div>
 </main>
 
 <%@ include file="../WEB-INF/jspf/footer.jspf"%>

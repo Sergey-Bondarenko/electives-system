@@ -47,15 +47,12 @@
         </ul>
     </div>
 </header>
-<script>
-    var menuItems = $('.menu li');
-    console.log(menuItems);
-</script>
+
 <c:if test="${n:have_notifications(pageContext.session)}">
-    <div class="content">
-    <n:notifications>
-        <p class="alert alert-{type}">{message}</p>
-    </n:notifications>
+    <div class="container">
+        <n:notifications>
+            <p class="alert alert-{type}">{message}</p>
+        </n:notifications>
     </div>
 </c:if>
 

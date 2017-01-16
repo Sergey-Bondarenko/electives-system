@@ -19,6 +19,7 @@
 <%@ include file="../WEB-INF/jspf/header.jspf"%>
 
 <main class="container" id="courses">
+    <div class="blocks centred">
     <c:forEach var="course" items="${archivedcourses}">
         <div class="courses-view">
             <h3>${course.name}</h3>
@@ -39,6 +40,7 @@
             </c:if>
         </div>
     </c:forEach>
+    </div>
 </main>
 
 <%@ include file="../WEB-INF/jspf/footer.jspf"%>

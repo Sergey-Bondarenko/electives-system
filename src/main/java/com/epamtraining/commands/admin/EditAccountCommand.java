@@ -75,7 +75,7 @@ public class EditAccountCommand extends AdminCommand {
 
             } else {
                 try {
-                    AccountService.getAccountById(id);
+                    account = AccountService.getAccountById(id);
                 } catch (ServiceLogicalException e) {
                     notification = NotificationCreator.createFromProperty("error.db.no_such_record", Notification.Type.ERROR, locale);
                     return pathManager.getString("path.page.admin.accounts");

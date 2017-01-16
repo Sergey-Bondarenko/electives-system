@@ -95,33 +95,6 @@ footer {
     background: url('../images/en-GB.png');
 }
 
-table {
-    font-size: 85%;
-    border-top: 1px solid #CCCCCC;
-    border-left: 1px solid #CCCCCC;
-    border-spacing: 0;
-}
-
-th {
-    font-weight: bold;
-    vertical-align: top;
-    text-align: center;
-}
-
-td, th {
-    border-right: 1px solid #cccccc;
-    border-bottom: 1px solid #cccccc;
-    padding: 10px;
-}
-
-tr:nth-child(2n) {
-    background-color: #eee;
-}
-
-td {
-    color: #333;
-}
-
 .actions {
     margin-bottom: 25px;
 }
@@ -182,12 +155,9 @@ td {
     margin-bottom: 25px;
 }
 
-.project-name span {
-    color: rgb(49, 128, 180);
-}
 
 .project-name {
-    color: rgb(224, 159, 43);
+    color: rgb(124, 159, 143);
     font-weight: normal;
     padding-left: 75px;
     background: url('../images/logo.png') no-repeat;
@@ -243,14 +213,13 @@ td {
 }
 
 .courses-view {
-    width: 28.666666%;
+    width: 28%;
+    margin: 0 1.5%;
     vertical-align: top;
     padding: 2%;
     display: inline-block;
     background: rgb(234, 243, 245);
     font-size: 15px;
-    margin-right: 1%;
-    margin-bottom: 15px;
 }
 
 .courses-view:nth-child(3n) {
@@ -264,9 +233,6 @@ td {
     font-size: 137%;
 }
 
-.courses-view .price {
-    float: right;
-}
 
 .courses-view .hot {
     font-size: 70% !important;
@@ -302,35 +268,14 @@ td {
     line-height: 1;
 }
 
-.discounted {
-    text-decoration: line-through;
-    color: #888;
-}
-
-.tour-order {
-    margin-bottom: 15px;
-}
-
-.tour-order .total {
-    font-weight: bold;
-    font-size: 120%;
-    color: rgb(179, 143, 0);
-}
-
-.tour-order h2 {
-    margin: 0 0 10px 0;
-}
-
-.order-table {
-    font-size: 100%;
-    width: 100%;
-    margin-bottom: 15px;
-}
 
 .blocks {
-    font-size: 0;
     display: flex;
     justify-content: space-between;
+}
+
+.blocks.centred {
+    justify-content: center;
 }
 
 .block {
@@ -350,45 +295,4 @@ td {
 .block img {
     width: 128px;
     padding: 15px;
-}
-
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 1s;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
-
-.tooltip .tooltiptext::after {
-    content: " ";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: black transparent transparent transparent;
 }

@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/vendor/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/style.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="${pageContext.servletContext.contextPath}/vendor/js/jquery-3.1.1.slim.min.js"></script>
+    <script type="text/javascript" src="${pageContext.servletContext.contextPath}/vendor/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -20,9 +22,11 @@
 
 <main class="container">
     <h3><fmt:message key="update_account.title"/></h3>
+    <div class="col-md-5">
 
     <%@include file="_forma.jspf"%>
 
+    </div>
 </main>
 
 <%@include file="../../WEB-INF/jspf/footer.jspf"%>

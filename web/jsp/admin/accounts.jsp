@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/vendor/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/style.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script type="text/javascript" src="${pageContext.servletContext.contextPath}/js/jquery.js"></script>
+    <script type="text/javascript" src="${pageContext.servletContext.contextPath}/vendor/js/jquery-3.1.1.slim.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $('.btn-red').click(function(){
@@ -35,24 +35,34 @@
         <a class="btn btn-success" href="app?c=add_account&lang=${locale}"><fmt:message key="account_table.add"/></a>
     </div>
 
-    <c:forEach items="${accounts}" var="account">
-        <div class="account">
-            <h3>${account.name} ${account.surname}
-                <c:if test="${account.userType.id == 2}">
-                    <span class="teacher"><fmt:message key="account_table.teacher"/></span>
-                </c:if>
-            </h3>
-            <div class="inner">
-                <p><b><fmt:message key="account_table.login"/>:</b> ${account.login}</p>
-                <p><b><fmt:message key="account_table.usertype"/>:</b> ${account.userType.userType}</p>
-            </div>
-            <a class="btn btn-primary" href="app?c=update_account&id=${account.id}&lang=${locale}"><fmt:message key="table.edit"/></a>
-            <a class="btn btn-danger" href="app?c=delete_account&id=${account.id}&lang=${locale}"><fmt:message key="table.delete"/></a>
-        </div>
-    </c:forEach>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th><fmt:message key="account_form.name"/></th>
+                    <th><fmt:message key="account_form.surname"/></th>
+                    <th><fmt:message key="account_form.type"/></th>
+                    <th><fmt:message key="account_table.login"/></th>
+                    <th><fmt:message key="account_form.edit"/></th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${accounts}" var="account">
+                    <tr>
+                        <td>${account.name}</td>
+                        <td>${account.surname}</td>
+                        <td>${account.userType.userType}</td>
+                        <td>${account.login}</td>
+                        <td><a class="btn btn-primary" href="app?c=update_account&id=${account.id}&lang=${locale}"><fmt:message key="table.edit"/></a>
+                        <a class="btn btn-danger" href="app?c=delete_account&id=${account.id}&lang=${locale}"><fmt:message key="table.delete"/></a></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
 
     <div class="actions">
-        <a class="btn" href="app?c=add_account&lang=${locale}"><fmt:message key="account_table.add"/></a>
+        <a class="btn btn-success" href="app?c=add_account&lang=${locale}"><fmt:message key="account_table.add"/></a>
     </div>
 
 </main>
