@@ -22,8 +22,11 @@
 <main class="container">
     <h3><fmt:message key="add_course.title"/></h3>
 
-    <%@include file="_formc.jspf"%>
+    <div class="col-md-5">
 
+        <%@include file="_formc.jspf"%>
+
+    </div>
 </main>
 
 <%@include file="../../WEB-INF/jspf/footer.jspf"%>

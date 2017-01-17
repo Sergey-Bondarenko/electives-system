@@ -31,33 +31,42 @@
 <%@ include file="../../WEB-INF/jspf/header.jspf"%>
 
 <main class="container">
-    <c:if test="${not empty courses}">
-        <c:forEach items="${courses}" var="course">
-            <div class="course">
-                <h3>${course.name}
-                    <c:if test="${course.status.id == 2}">
-                        <span class="open"><fmt:message key="student_table.started"/></span>
-                    </c:if>
-                </h3>
-                <div class="inner">
-                    <p><b><fmt:message key="course_table.details"/>:</b> ${course.description}</p>
-                    <p><b><fmt:message key="course_table.status"/>:</b> ${course.status.courseStatus}</p>
-                    <p><b><fmt:message key="course_table.teacher"/>:</b> ${course.teacher.name} ${course.teacher.surname}</p>
-                    <p><b><fmt:message key="course_table.listeners"/></b> ${course.listeners} / ${course.maxListeners}</p>
-                    <c:forEach items="${course.ratingList}" var="rating">
-                        <c:if test="${not empty rating.rating}">
-                            <c:if test="${course.id == rating.course.id}">
-                                <p><b><fmt:message key="student_table.rating"/></b> ${rating.rating}</p>
-                                <p><b><fmt:message key="student_table.comment"/></b> ${rating.comment}</p>
-                            </c:if>
-                        </c:if>
-                    </c:forEach>
-                </div>
-                <a class="btn btn-danger" href="app?c=leave_course&cid=${course.id}&lang=${locale}"><fmt:message key="student.account.leave"/></a>
-            </div>
-        </c:forEach>
+    <div class="actions">
         <a class="btn btn-primary" href="app?c=courses&lang=${locale}"><fmt:message key="student.account.select_course"/></a>
-    </c:if>
+    </div>
+    <div class="row">
+        <c:if test="${not empty courses}">
+            <c:forEach items="${courses}" var="course" varStatus="loop">
+                <div class="col-md-6">
+                    <div class="course">
+                        <h3>${course.name}
+                            <c:if test="${course.status.id == 2}">
+                                <span class="open"><fmt:message key="student_table.started"/></span>
+                            </c:if>
+                        </h3>
+                        <div class="inner">
+                            <p><b><fmt:message key="course_table.details"/>:</b> ${course.description}</p>
+                            <p><b><fmt:message key="course_table.status"/>:</b> ${course.status.courseStatus}</p>
+                            <p><b><fmt:message key="course_table.teacher"/>:</b> ${course.teacher.name} ${course.teacher.surname}</p>
+                            <p><b><fmt:message key="course_table.listeners"/></b> ${course.listeners} / ${course.maxListeners}</p>
+                            <c:forEach items="${course.ratingList}" var="rating">
+                                <c:if test="${not empty rating.rating}">
+                                    <c:if test="${course.id == rating.course.id}">
+                                        <p><b><fmt:message key="student_table.rating"/></b> ${rating.rating}</p>
+                                        <p><b><fmt:message key="student_table.comment"/></b> ${rating.comment}</p>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </div>
+                        <a class="btn btn-danger" href="app?c=leave_course&cid=${course.id}&lang=${locale}"><fmt:message key="student.account.leave"/></a>
+                    </div>
+                </div>
+                <c:if test="${(loop.index + 1) mod 2 == 0}">
+                    <div class="clearfix"></div>
+                </c:if>
+            </c:forEach>
+        </c:if>
+    </div>
     <c:if test="${empty courses}">
         <div class="course">
             <h3><fmt:message key="student.account.no_courses"/></h3>

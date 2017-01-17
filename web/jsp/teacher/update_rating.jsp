@@ -18,11 +18,14 @@
 
 <%@include file="../../WEB-INF/jspf/header.jspf"%>
 
-<main class="content">
+<main class="container">
     <h3><fmt:message key="teacher.rating.edit_rating"/></h3>
 
-    <%@include file="_formt.jspf"%>
+    <div class="col-md-5">
 
+        <%@include file="_formt.jspf"%>
+
+    </div>
 </main>
 
 <%@include file="../../WEB-INF/jspf/footer.jspf"%>

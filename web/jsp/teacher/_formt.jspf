@@ -1,23 +1,23 @@
-<form method="post">
+<form method="post" class="row">
 
-    <div class="form-row">
+    <div class="form-group">
         <label for="name"><fmt:message key="course_form.coursename"/></label>
-        <p id="name">${rating.course.name}</p>
+        <p class="form-control" id="name">${rating.course.name}</p>
     </div>
 
-    <div class="form-row">
+    <div class="form-group">
         <label for="student"><fmt:message key="teacher.courses.listener"/></label>
-        <p id="student">${rating.student.name} ${rating.student.surname}</p>
+        <p class="form-control" id="student">${rating.student.name} ${rating.student.surname}</p>
     </div>
 
-    <div class="form-row">
+    <div class="form-group">
         <label for="rating"><fmt:message key="teacher.courses.rating"/></label>
-        <input id="rating" name="rating" type="text" value="${rating.rating}">
+        <input class="form-control" id="rating" name="rating" type="text" value="${rating.rating}">
     </div>
 
-    <div class="form-row">
+    <div class="form-group">
         <label for="comment"><fmt:message key="teacher.courses.comment"/></label>
-        <textarea rows="10" id="comment" name="comment">${rating.comment}</textarea>
+        <textarea class="form-control" rows="10" id="comment" name="comment">${rating.comment}</textarea>
     </div>
 
     <input class="btn btn-warning" name="submit" type="submit" value="<fmt:message key="form_submit"/>"/>

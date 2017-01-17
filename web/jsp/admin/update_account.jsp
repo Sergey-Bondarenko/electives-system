@@ -24,7 +24,7 @@
     <h3><fmt:message key="update_account.title"/></h3>
     <div class="col-md-5">
 
-    <%@include file="_forma.jspf"%>
+        <%@include file="_forma.jspf"%>
 
     </div>
 </main>

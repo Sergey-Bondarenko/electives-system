@@ -12,6 +12,8 @@
     <title><fmt:message key="archive.title"/></title>
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/vendor/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/style.css"/>
+    <script type="text/javascript" src="${pageContext.servletContext.contextPath}/vendor/js/jquery-3.1.1.slim.min.js"></script>
+    <script type="text/javascript" src="${pageContext.servletContext.contextPath}/vendor/js/bootstrap.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
@@ -34,7 +36,13 @@
                 <c:forEach var="rating" items="${course.ratingList}">
                     <c:if test="${user.id == rating.student.id}">
                         <p><b><fmt:message key="student_table.rating"/></b> ${rating.rating}</p>
-                        <p><b><fmt:message key="student_table.comment"/></b> ${rating.comment}</p>
+                        <div class="dropup">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <fmt:message key="student_table.comment"/>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> ${rating.comment}</ul>
+                        </div>
                     </c:if>
                 </c:forEach>
             </c:if>

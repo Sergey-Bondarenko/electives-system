@@ -1,44 +1,57 @@
-<form method="post">
-    <div class="form-row">
+<form method="post" class="row">
+    <div class="form-group">
         <label for="name"><fmt:message key="course_form.coursename"/></label>
-        <input id="name" name="name" type="text" value="${course.name}">
+        <input class="form-control" id="name" name="name" type="text" value="${course.name}">
     </div>
 
-    <div class="form-row">
+    <div class="form-group">
         <label for="status"><fmt:message key="course_form.status"/></label>
-        <select id="status" name="status">
+        <select class="form-control" id="status" name="status">
             <c:forEach var="status" items="${courseStatuses}">
                 <option value="${status.id}" <c:if test="${status.id eq course.status.id}"> selected</c:if>>${status.courseStatus}</option>
             </c:forEach>
         </select>
     </div>
 
-    <div class="form-row">
+    <div class="form-group">
         <label for="description"><fmt:message key="course_form.description"/></label>
-        <textarea rows="15" id="description" name="description">${course.description}</textarea>
+        <textarea class="form-control" rows="15" id="description" name="description">${course.description}</textarea>
     </div>
 
-    <div class="form-row">
+    <div class="form-group">
         <label for="teacher"><fmt:message key="course_form.teacher"/></label>
-        <select id="teacher" name="teacher">
+        <select class="form-control" id="teacher" name="teacher">
             <c:forEach var="teacher" items="${teachers}">
                 <option value="${teacher.id}" <c:if test="${teacher.id eq course.teacher.id}"> selected</c:if>>${teacher.name} ${teacher.surname}</option>
             </c:forEach>
         </select>
     </div>
 
-    <div class="form-row">
+    <div class="form-group">
         <label for="max_listeners"><fmt:message key="course_form.max_listeners"/></label>
-        <input id="max_listeners" name="max_listeners" type="text" value="${course.maxListeners}">
+        <input class="form-control" id="max_listeners" name="max_listeners" type="text" value="${course.maxListeners}">
     </div>
 
     <c:if test="${not empty students}">
-        <div class="form-row">
-            <label for="listeners"><fmt:message key="course_form.listenerslist"/></label>
-            <c:forEach var="listener" items="${students}">
-                <p id="listeners">${listener.student.name} ${listener.student.surname}</p>
-                <a href="app?c=remove_student&sid=${listener.student.id}&cid=${course.id}&lang=${locale}"><fmt:message key="course_form.remove"/></a>
-            </c:forEach>
+        <div class="form-group">
+            <label><fmt:message key="course_form.listenerslist"/></label>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><fmt:message key="account_form.name"/></th>
+                        <th><fmt:message key="account_form.surname"/></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="listener" items="${students}">
+                        <tr>
+                            <td>${listener.student.name}</td>
+                            <td>${listener.student.surname}</td>
+                            <td><a href="app?c=remove_student&sid=${listener.student.id}&cid=${course.id}&lang=${locale}"><span class="glyphicon glyphicon-remove"></span></a></td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
         </div>
     </c:if>
 

@@ -22,8 +22,11 @@
 <main class="container">
     <h3><fmt:message key="add_account.title"/></h3>
 
-    <%@include file="_forma.jspf"%>
+    <div class="col-md-5">
 
+        <%@include file="_forma.jspf"%>
+
+    </div>
 </main>
 
 <%@include file="../../WEB-INF/jspf/footer.jspf"%>

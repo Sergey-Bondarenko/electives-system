@@ -33,45 +33,51 @@
 
 <main class="container">
     <c:if test="${not empty courses}">
-        <c:forEach items="${courses}" var="course">
-            <div class="course">
-                <h3>${course.name}
-                    <c:if test="${course.status.id == 2}">
-                        <span class="course-open"><fmt:message key="teacher_table.open"/></span>
-                    </c:if>
-                </h3>
-                <div class="inner">
-                    <p><b><fmt:message key="course_table.details"/>:</b> ${course.description}</p>
-                    <p><b><fmt:message key="course_table.status"/>:</b> ${course.status.courseStatus}</p>
-                    <p><b><fmt:message key="course_table.listeners"/></b> ${course.listeners} / ${course.maxListeners}</p>
-
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <fmt:message key="course_table.students"/>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <c:forEach items="${course.ratingList}" var="rating">
-                                <li>
-                                    <a href="app?c=edit_rating&cid=${course.id}&sid=${rating.student.id}&lang=${locale}"  class="course-student">
-                                        <span>${rating.student.name} ${rating.student.surname}</span>
-                                        <c:choose>
-                                            <c:when test="${ empty rating.rating}">
-                                                <span class="glyphicon glyphicon-edit"></span>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <span class="glyphicon glyphicon-ok"></span>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </a>
-                                </li>
-                            </c:forEach>
-                        </ul>
+        <div class="row">
+            <c:forEach items="${courses}" var="course" varStatus="loop">
+                <div class="col-md-6">
+                    <div class="course">
+                        <h3>${course.name}
+                            <c:if test="${course.status.id == 2}">
+                                <span class="course-open"><fmt:message key="teacher_table.open"/></span>
+                            </c:if>
+                        </h3>
+                        <div class="inner">
+                            <p><b><fmt:message key="course_table.details"/>:</b> ${course.description}</p>
+                            <p><b><fmt:message key="course_table.status"/>:</b> ${course.status.courseStatus}</p>
+                            <p><b><fmt:message key="course_table.listeners"/></b> ${course.listeners} / ${course.maxListeners}</p>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <fmt:message key="course_table.students"/>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <c:forEach items="${course.ratingList}" var="rating">
+                                        <li>
+                                            <a href="app?c=edit_rating&cid=${course.id}&sid=${rating.student.id}&lang=${locale}"  class="course-student">
+                                                <span>${rating.student.name} ${rating.student.surname}</span>
+                                                <c:choose>
+                                                    <c:when test="${ empty rating.rating}">
+                                                        <span class="glyphicon glyphicon-edit"></span>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span class="glyphicon glyphicon-ok"></span>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </a>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </div>
+                        <a class="btn btn-danger" href="app?c=end_course&cid=${course.id}&lang=${locale}"><fmt:message key="teacher.courses.end"/></a>
                     </div>
                 </div>
-                <a class="btn btn-danger" href="app?c=end_course&cid=${course.id}&lang=${locale}"><fmt:message key="teacher.courses.end"/></a>
-            </div>
-        </c:forEach>
+                <c:if test="${(loop.index + 1) mod 2 == 0}">
+                    <div class="clearfix"></div>
+                </c:if>
+            </c:forEach>
+        </div>
     </c:if>
     <c:if test="${empty courses}">
         <div class="course">
