@@ -15,25 +15,18 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/style.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script type="text/javascript" src="${pageContext.servletContext.contextPath}/vendor/js/jquery-3.1.1.slim.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.btn btn-danger').click(function(){
-                if (confirm ('<fmt:message key="admin.manager.delete"/>')){
-                    return true;
-                }
-                return false;
-            })
-        });
-    </script>
+    <script type="text/javascript" src="${pageContext.servletContext.contextPath}/vendor/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <%@ include file="../../WEB-INF/jspf/header.jspf"%>
 
 <main class="container">
+
     <div class="actions">
         <a class="btn btn-success" href="app?c=add_course&lang=${locale}"><fmt:message key="course_table.add"/></a>
     </div>
+
     <div class="row">
         <c:forEach items="${courses}" var="course" varStatus="loop">
             <div class="col-md-6">
@@ -50,7 +43,24 @@
                         <p><b><fmt:message key="course_table.listeners"/></b> ${course.listeners} / ${course.maxListeners}</p>
                     </div>
                     <a class="btn btn-primary" href="app?c=update_course&cid=${course.id}&lang=${locale}"><fmt:message key="table.edit"/></a>
-                    <a class="btn btn-danger" href="app?c=delete_course&cid=${course.id}&lang=${locale}"><fmt:message key="table.delete"/></a>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal${course.id}"><fmt:message key="table.delete"/></button>
+                    <div class="modal fade" id="myModal${course.id}" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title"><fmt:message key="table.delete"/></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p><fmt:message key="course_form.remove_text"/></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="course_form.cancel"/></button>
+                                    <button type="button" class="btn btn-primary"><a  href="app?c=delete_course&cid=${course.id}&lang=${locale}"><fmt:message key="table.delete"/></a></button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
                 </div>
             </div>
             <c:if test="${(loop.index + 1) mod 2 == 0}">
@@ -62,6 +72,7 @@
     <div class="actions">
         <a class="btn btn-success" href="app?c=add_course&lang=${locale}"><fmt:message key="course_table.add"/></a>
     </div>
+
 </main>
 
 <%@ include file="../../WEB-INF/jspf/footer.jspf"%>

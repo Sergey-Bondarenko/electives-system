@@ -14,16 +14,7 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/style.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script type="text/javascript" src="${pageContext.servletContext.contextPath}/vendor/js/jquery-3.1.1.slim.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.btn-red').click(function(){
-                if (confirm ('<fmt:message key="admin.manager.delete"/>')){
-                    return true;
-                }
-                return false;
-            })
-        });
-    </script>
+    <script type="text/javascript" src="${pageContext.servletContext.contextPath}/vendor/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -53,8 +44,27 @@
                         <td>${account.surname}</td>
                         <td>${account.userType.userType}</td>
                         <td>${account.login}</td>
-                        <td><a class="btn btn-primary" href="app?c=update_account&id=${account.id}&lang=${locale}"><fmt:message key="table.edit"/></a>
-                        <a class="btn btn-danger" href="app?c=delete_account&id=${account.id}&lang=${locale}"><fmt:message key="table.delete"/></a></td>
+                        <td>
+                            <a class="btn btn-primary" href="app?c=update_account&id=${account.id}&lang=${locale}"><fmt:message key="table.edit"/></a>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal${account.id}"><fmt:message key="table.delete"/></button>
+                            <div class="modal fade" id="myModal${account.id}" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title"><fmt:message key="table.delete"/></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><fmt:message key="account_form.delete_text"/></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="course_form.cancel"/></button>
+                                            <button type="button" class="btn btn-primary"><a href="app?c=delete_account&id=${account.id}&lang=${locale}"><fmt:message key="table.delete"/></a></button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>

@@ -14,17 +14,8 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/vendor/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/style.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script type="text/javascript" src="${pageContext.servletContext.contextPath}/js/jquery.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.btn-red').click(function(){
-                if (confirm ('<fmt:message key="student.account.leavec"/>')){
-                    return true;
-                }
-                return false;
-            })
-        });
-    </script>
+    <script type="text/javascript" src="${pageContext.servletContext.contextPath}/vendor/js/jquery-3.1.1.slim.min.js"></script>
+    <script type="text/javascript" src="${pageContext.servletContext.contextPath}/vendor/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -58,7 +49,24 @@
                                 </c:if>
                             </c:forEach>
                         </div>
-                        <a class="btn btn-danger" href="app?c=leave_course&cid=${course.id}&lang=${locale}"><fmt:message key="student.account.leave"/></a>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal${course.id}"><fmt:message key="student.account.leave"/></button>
+                        <div class="modal fade" id="myModal${course.id}" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title"><fmt:message key="student.account.leave"/></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><fmt:message key="student.account.leavec"/></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="course_form.cancel"/></button>
+                                        <button type="button" class="btn btn-primary"><a href="app?c=leave_course&cid=${course.id}&lang=${locale}"><fmt:message key="student.account.leave"/></a></button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
                     </div>
                 </div>
                 <c:if test="${(loop.index + 1) mod 2 == 0}">
@@ -70,7 +78,6 @@
     <c:if test="${empty courses}">
         <div class="course">
             <h3><fmt:message key="student.account.no_courses"/></h3>
-            <a class="btn btn-primary" href="app?c=courses&lang=${locale}"><fmt:message key="student.account.select_course"/></a>
         </div>
     </c:if>
 </main>

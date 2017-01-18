@@ -32,7 +32,6 @@ public class DeleteCourseCommand extends AdminCommand {
             try {
                 int id = Integer.parseInt(param);
                 if (CourseService.deleteCourse(id)) {
-                    CourseService.setAllCourses(request);
                     notification = NotificationCreator.createFromProperty("info.db.delete_success", locale);
                 }
             } catch (NumberFormatException e) {
@@ -40,12 +39,17 @@ public class DeleteCourseCommand extends AdminCommand {
             } catch (ServiceTechnicalException e) {
                 throw new CommandException(e);
             } catch (ServiceLogicalException e) {
-                notification = NotificationCreator.createFromProperty("error.db.no_such_record", Notification.Type.ERROR, locale);
+                notification = NotificationCreator.createFromProperty("error.db.not_empty", Notification.Type.ERROR, locale);
             } finally {
                 if (notification != null) {
                     NotificationService.push(request.getSession(), notification);
                 }
             }
+        }
+        try {
+            CourseService.setAllCourses(request);
+        } catch (ServiceTechnicalException | ServiceLogicalException e) {
+            throw new CommandException(e);
         }
 
         return pathManager.getString("path.page.admin.manager");
