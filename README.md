@@ -2,11 +2,11 @@
 
 Final project epam java web courses
 
-##Task
+## Task
 
 Elective system. There is a list of courses, each of which is assigned a teacher. The student is recorded on one or more courses, registration data is stored. Upon completion of training teacher to the students assessment, which is stored in the archives.
 
-##Requirements for implementation of the project
+## Requirements for implementation of the project
 
 1. Information about domain store in the database (recommended MySQL), for access use JDBC.
 2. Based on the subject area create classes describing of entities.
@@ -20,7 +20,7 @@ Elective system. There is a list of courses, each of which is assigned a teacher
 10. In developing the use logging events (Log4j).
 11. The code must contain comments, at least partially.
 
-##Deployment
+## Deployment
 
 1. Build Maven project from pom.xml
 2. Create elective db from dump file.
